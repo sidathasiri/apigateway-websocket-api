@@ -19,10 +19,10 @@ Before you begin, ensure you have the following prerequisites:
 ## Getting Started
 
 1. Clone this repository
-2. `npm install`
+2. Run `npm install`
 3. Add aws account id and aws region in `bin/apigateway-websocket-api.ts`
 4. Setup AWS credentials to access the AWS account from local
-5. cdk deploy
+5. Run `cdk deploy`
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
