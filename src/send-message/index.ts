@@ -7,13 +7,14 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     endpoint:
       event.requestContext.domainName + '/' + event.requestContext.stage,
   });
-  const postData = JSON.parse(event.body ?? '').data.split(',');
-  console.log('Received:', postData);
-  console.log('Payload:', { ConnectionId: postData[0], Data: postData[1] });
+  const connectionId = JSON.parse(event.body ?? '').connectionId;
+  const message = JSON.parse(event.body ?? '').message;
+
+  console.log('Payload:', { ConnectionId: connectionId, Data: message });
 
   try {
     await apigwManagementApi
-      .postToConnection({ ConnectionId: postData[0], Data: postData[1] })
+      .postToConnection({ ConnectionId: connectionId, Data: message })
       .promise();
   } catch (error) {
     console.error('Error sending message:', error);
