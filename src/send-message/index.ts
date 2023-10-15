@@ -7,8 +7,10 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     endpoint:
       event.requestContext.domainName + '/' + event.requestContext.stage,
   });
-  const connectionId = JSON.parse(event.body ?? '').connectionId;
-  const message = JSON.parse(event.body ?? '').message;
+
+  const eventBody = JSON.parse(event.body ?? '');
+  const connectionId = eventBody.connectionId;
+  const message = eventBody.message;
 
   console.log('Payload:', { ConnectionId: connectionId, Data: message });
 
